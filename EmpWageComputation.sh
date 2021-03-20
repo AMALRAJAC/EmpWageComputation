@@ -35,19 +35,18 @@ do
 total_emp_hours=$(($total_emp_hours+$emp_hours))
 daily_wage=$(($emp_rate_per_hour*$emp_hours))
 count1=$(($count1+1))
+arr[((count++))]="$count1"
 arr[((count++))]="$daily_wage"
 done
 total_salery=$(($total_emp_hours*$emp_rate_per_hour))
-
 arr[((count++))]="$total_salery"
 echo ${arr[@]}
-printf "daily_wage"
-for ((i=0;i<$count1;i++))
+printf "day\tdaily_wage"
+for (( i=0;i<2*$count1;i=$(($i+2)) ))
 do
- printf "\t\n${arr[i]}\t"
+printf "\n${arr[$i]}\t${arr[$(($i+1))]}"
 j=$i
 done
-printf "\t\n total=${arr[$j+1]}\t"
 
-
+printf "\ntotal salery=${arr[$(($j+2))]}"
 
