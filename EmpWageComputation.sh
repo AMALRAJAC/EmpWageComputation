@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 is_parttime=1
 is_fulltime=2
 max_hours_in_month=10
@@ -7,7 +7,7 @@ num_working_days=20
 total_emp_hours=0
 total_working_days=0
 total_salery=0
-
+count=0
 function workhours(){
 case "$1" in
 
@@ -33,8 +33,21 @@ do
         workhours $((RANDOM%3))
         emp_hours=$?
 total_emp_hours=$(($total_emp_hours+$emp_hours))
+daily_wage=$(($emp_rate_per_hour*$emp_hours))
+count1=$(($count1+1))
+arr[((count++))]="$daily_wage"
 done
 total_salery=$(($total_emp_hours*$emp_rate_per_hour))
+
+arr[((count++))]="$total_salery"
+echo ${arr[@]}
+printf "daily_wage"
+for ((i=0;i<$count1;i++))
+do
+ printf "\t\n${arr[i]}\t"
+j=$i
+done
+printf "\t\n total=${arr[$j+1]}\t"
 
 
 
