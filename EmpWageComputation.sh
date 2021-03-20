@@ -1,10 +1,13 @@
 #!/bin/bash -x
 is_present=1
-is_absent=0
 emp_check=$((RANDOM%2))
-if [ $emp_check -eq $is_present ]
+if [ $is_present -eq $emp_check ]
 then
-        echo "employee present"
+        emp_rate_per_hour=20
+        emp_working_hr=8
+        salery=$(( $emp_rate_per_hour*$emp_working_hr ))
 else
-        echo "employee absent"
+        salery=0
 fi
+
+
